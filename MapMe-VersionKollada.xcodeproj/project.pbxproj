@@ -1,0 +1,795 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		30FBC1C60BC7280A33777363 /* Pods_MapMe_VersionKolladaUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 99DEA121D07DBADB6E753B62 /* Pods_MapMe_VersionKolladaUITests.framework */; };
+		4F798387CFF885171EBC8F38 /* Pods_MapMe_VersionKolladaTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 103C3C92AC2F4AE5EC06AB60 /* Pods_MapMe_VersionKolladaTests.framework */; };
+		8F0122F11E9BEA67005F5A2E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F0122F01E9BEA67005F5A2E /* AppDelegate.swift */; };
+		8F0122F31E9BEA67005F5A2E /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F0122F21E9BEA67005F5A2E /* FirstViewController.swift */; };
+		8F0122F51E9BEA67005F5A2E /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F0122F41E9BEA67005F5A2E /* SecondViewController.swift */; };
+		8F0122F81E9BEA67005F5A2E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8F0122F61E9BEA67005F5A2E /* Main.storyboard */; };
+		8F0122FA1E9BEA67005F5A2E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8F0122F91E9BEA67005F5A2E /* Assets.xcassets */; };
+		8F0122FD1E9BEA67005F5A2E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8F0122FB1E9BEA67005F5A2E /* LaunchScreen.storyboard */; };
+		8F0123081E9BEA67005F5A2E /* MapMe_VersionKolladaTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F0123071E9BEA67005F5A2E /* MapMe_VersionKolladaTests.swift */; };
+		8F0123131E9BEA67005F5A2E /* MapMe_VersionKolladaUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F0123121E9BEA67005F5A2E /* MapMe_VersionKolladaUITests.swift */; };
+		8F0123241E9D7CD3005F5A2E /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F0123231E9D7CD3005F5A2E /* SettingViewController.swift */; };
+		8F0123261E9FE0A5005F5A2E /* UserProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F0123251E9FE0A5005F5A2E /* UserProfile.swift */; };
+		8F0123281E9FE3D5005F5A2E /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F0123271E9FE3D5005F5A2E /* RegisterViewController.swift */; };
+		8F01232A1E9FE430005F5A2E /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F0123291E9FE430005F5A2E /* LoginViewController.swift */; };
+		8F5054341E9FE6730073A307 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8F5054331E9FE6730073A307 /* GoogleService-Info.plist */; };
+		8F5054381EA3E3940073A307 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8F5054371EA3E3940073A307 /* MapKit.framework */; };
+		8F50543A1EA3E39C0073A307 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8F5054391EA3E39C0073A307 /* CoreLocation.framework */; };
+		8F50543C1EA3FE130073A307 /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8F50543B1EA3FE130073A307 /* AdSupport.framework */; };
+		B9FCBFBB1455F674C045D55D /* Pods_MapMe_VersionKollada.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D437D0CC97E7085A0A13CE54 /* Pods_MapMe_VersionKollada.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		8F0123041E9BEA67005F5A2E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8F0122E51E9BEA67005F5A2E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8F0122EC1E9BEA67005F5A2E;
+			remoteInfo = "MapMe-VersionKollada";
+		};
+		8F01230F1E9BEA67005F5A2E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8F0122E51E9BEA67005F5A2E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8F0122EC1E9BEA67005F5A2E;
+			remoteInfo = "MapMe-VersionKollada";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		103C3C92AC2F4AE5EC06AB60 /* Pods_MapMe_VersionKolladaTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MapMe_VersionKolladaTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		4CE2E8E7DA2D27B616AFD398 /* Pods-MapMe-VersionKolladaTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MapMe-VersionKolladaTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-MapMe-VersionKolladaTests/Pods-MapMe-VersionKolladaTests.release.xcconfig"; sourceTree = "<group>"; };
+		7A1A17DF5D52A20E3ED2C60B /* Pods-MapMe-VersionKolladaUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MapMe-VersionKolladaUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MapMe-VersionKolladaUITests/Pods-MapMe-VersionKolladaUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		81F1F589EE1A613F7964AA32 /* Pods-MapMe-VersionKollada.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MapMe-VersionKollada.release.xcconfig"; path = "Pods/Target Support Files/Pods-MapMe-VersionKollada/Pods-MapMe-VersionKollada.release.xcconfig"; sourceTree = "<group>"; };
+		85B708EE3D55976DE49CAC02 /* Pods-MapMe-VersionKolladaTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MapMe-VersionKolladaTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MapMe-VersionKolladaTests/Pods-MapMe-VersionKolladaTests.debug.xcconfig"; sourceTree = "<group>"; };
+		8F0122ED1E9BEA67005F5A2E /* MapMe-VersionKollada.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "MapMe-VersionKollada.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		8F0122F01E9BEA67005F5A2E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		8F0122F21E9BEA67005F5A2E /* FirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
+		8F0122F41E9BEA67005F5A2E /* SecondViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondViewController.swift; sourceTree = "<group>"; };
+		8F0122F71E9BEA67005F5A2E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		8F0122F91E9BEA67005F5A2E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		8F0122FC1E9BEA67005F5A2E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		8F0122FE1E9BEA67005F5A2E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8F0123031E9BEA67005F5A2E /* MapMe-VersionKolladaTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "MapMe-VersionKolladaTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		8F0123071E9BEA67005F5A2E /* MapMe_VersionKolladaTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapMe_VersionKolladaTests.swift; sourceTree = "<group>"; };
+		8F0123091E9BEA67005F5A2E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8F01230E1E9BEA67005F5A2E /* MapMe-VersionKolladaUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "MapMe-VersionKolladaUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		8F0123121E9BEA67005F5A2E /* MapMe_VersionKolladaUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapMe_VersionKolladaUITests.swift; sourceTree = "<group>"; };
+		8F0123141E9BEA67005F5A2E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8F0123231E9D7CD3005F5A2E /* SettingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
+		8F0123251E9FE0A5005F5A2E /* UserProfile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserProfile.swift; sourceTree = "<group>"; };
+		8F0123271E9FE3D5005F5A2E /* RegisterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
+		8F0123291E9FE430005F5A2E /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		8F5054331E9FE6730073A307 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
+		8F5054361EA3E0310073A307 /* MapMe-VersionKollada.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "MapMe-VersionKollada.entitlements"; sourceTree = "<group>"; };
+		8F5054371EA3E3940073A307 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		8F5054391EA3E39C0073A307 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		8F50543B1EA3FE130073A307 /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
+		8F50543D1EA426000073A307 /* GeoFire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GeoFire.framework; path = "Pods/../build/Debug-iphoneos/GeoFire/GeoFire.framework"; sourceTree = "<group>"; };
+		99DEA121D07DBADB6E753B62 /* Pods_MapMe_VersionKolladaUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MapMe_VersionKolladaUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B5B81A2383DB5DF97C38B8AD /* Pods-MapMe-VersionKolladaUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MapMe-VersionKolladaUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-MapMe-VersionKolladaUITests/Pods-MapMe-VersionKolladaUITests.release.xcconfig"; sourceTree = "<group>"; };
+		D437D0CC97E7085A0A13CE54 /* Pods_MapMe_VersionKollada.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MapMe_VersionKollada.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F3E6348C5252E9794BE1B4F8 /* Pods-MapMe-VersionKollada.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MapMe-VersionKollada.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MapMe-VersionKollada/Pods-MapMe-VersionKollada.debug.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		8F0122EA1E9BEA67005F5A2E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8F50543C1EA3FE130073A307 /* AdSupport.framework in Frameworks */,
+				8F50543A1EA3E39C0073A307 /* CoreLocation.framework in Frameworks */,
+				8F5054381EA3E3940073A307 /* MapKit.framework in Frameworks */,
+				B9FCBFBB1455F674C045D55D /* Pods_MapMe_VersionKollada.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8F0123001E9BEA67005F5A2E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4F798387CFF885171EBC8F38 /* Pods_MapMe_VersionKolladaTests.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8F01230B1E9BEA67005F5A2E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				30FBC1C60BC7280A33777363 /* Pods_MapMe_VersionKolladaUITests.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		8F0122E41E9BEA67005F5A2E = {
+			isa = PBXGroup;
+			children = (
+				8F0122EF1E9BEA67005F5A2E /* MapMe-VersionKollada */,
+				8F0123061E9BEA67005F5A2E /* MapMe-VersionKolladaTests */,
+				8F0123111E9BEA67005F5A2E /* MapMe-VersionKolladaUITests */,
+				8F0122EE1E9BEA67005F5A2E /* Products */,
+				EB4599A9E4AC482A977D6F30 /* Pods */,
+				FAFE00D2D12863A74B74DCD3 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		8F0122EE1E9BEA67005F5A2E /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				8F0122ED1E9BEA67005F5A2E /* MapMe-VersionKollada.app */,
+				8F0123031E9BEA67005F5A2E /* MapMe-VersionKolladaTests.xctest */,
+				8F01230E1E9BEA67005F5A2E /* MapMe-VersionKolladaUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		8F0122EF1E9BEA67005F5A2E /* MapMe-VersionKollada */ = {
+			isa = PBXGroup;
+			children = (
+				8F5054361EA3E0310073A307 /* MapMe-VersionKollada.entitlements */,
+				8F0122F01E9BEA67005F5A2E /* AppDelegate.swift */,
+				8F0122F21E9BEA67005F5A2E /* FirstViewController.swift */,
+				8F0122F41E9BEA67005F5A2E /* SecondViewController.swift */,
+				8F0123231E9D7CD3005F5A2E /* SettingViewController.swift */,
+				8F0123271E9FE3D5005F5A2E /* RegisterViewController.swift */,
+				8F0123291E9FE430005F5A2E /* LoginViewController.swift */,
+				8F0123251E9FE0A5005F5A2E /* UserProfile.swift */,
+				8F0122F61E9BEA67005F5A2E /* Main.storyboard */,
+				8F0122F91E9BEA67005F5A2E /* Assets.xcassets */,
+				8F0122FB1E9BEA67005F5A2E /* LaunchScreen.storyboard */,
+				8F0122FE1E9BEA67005F5A2E /* Info.plist */,
+				8F5054331E9FE6730073A307 /* GoogleService-Info.plist */,
+			);
+			path = "MapMe-VersionKollada";
+			sourceTree = "<group>";
+		};
+		8F0123061E9BEA67005F5A2E /* MapMe-VersionKolladaTests */ = {
+			isa = PBXGroup;
+			children = (
+				8F0123071E9BEA67005F5A2E /* MapMe_VersionKolladaTests.swift */,
+				8F0123091E9BEA67005F5A2E /* Info.plist */,
+			);
+			path = "MapMe-VersionKolladaTests";
+			sourceTree = "<group>";
+		};
+		8F0123111E9BEA67005F5A2E /* MapMe-VersionKolladaUITests */ = {
+			isa = PBXGroup;
+			children = (
+				8F0123121E9BEA67005F5A2E /* MapMe_VersionKolladaUITests.swift */,
+				8F0123141E9BEA67005F5A2E /* Info.plist */,
+			);
+			path = "MapMe-VersionKolladaUITests";
+			sourceTree = "<group>";
+		};
+		EB4599A9E4AC482A977D6F30 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				F3E6348C5252E9794BE1B4F8 /* Pods-MapMe-VersionKollada.debug.xcconfig */,
+				81F1F589EE1A613F7964AA32 /* Pods-MapMe-VersionKollada.release.xcconfig */,
+				85B708EE3D55976DE49CAC02 /* Pods-MapMe-VersionKolladaTests.debug.xcconfig */,
+				4CE2E8E7DA2D27B616AFD398 /* Pods-MapMe-VersionKolladaTests.release.xcconfig */,
+				7A1A17DF5D52A20E3ED2C60B /* Pods-MapMe-VersionKolladaUITests.debug.xcconfig */,
+				B5B81A2383DB5DF97C38B8AD /* Pods-MapMe-VersionKolladaUITests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		FAFE00D2D12863A74B74DCD3 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				8F50543D1EA426000073A307 /* GeoFire.framework */,
+				8F50543B1EA3FE130073A307 /* AdSupport.framework */,
+				8F5054391EA3E39C0073A307 /* CoreLocation.framework */,
+				8F5054371EA3E3940073A307 /* MapKit.framework */,
+				D437D0CC97E7085A0A13CE54 /* Pods_MapMe_VersionKollada.framework */,
+				103C3C92AC2F4AE5EC06AB60 /* Pods_MapMe_VersionKolladaTests.framework */,
+				99DEA121D07DBADB6E753B62 /* Pods_MapMe_VersionKolladaUITests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		8F0122EC1E9BEA67005F5A2E /* MapMe-VersionKollada */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8F0123171E9BEA67005F5A2E /* Build configuration list for PBXNativeTarget "MapMe-VersionKollada" */;
+			buildPhases = (
+				04834B275CBBB707F8124431 /* [CP] Check Pods Manifest.lock */,
+				8F0122E91E9BEA67005F5A2E /* Sources */,
+				8F0122EA1E9BEA67005F5A2E /* Frameworks */,
+				8F0122EB1E9BEA67005F5A2E /* Resources */,
+				556F084162D551ED700285DE /* [CP] Embed Pods Frameworks */,
+				79E21FB3A40A9A452BCEEF69 /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "MapMe-VersionKollada";
+			productName = "MapMe-VersionKollada";
+			productReference = 8F0122ED1E9BEA67005F5A2E /* MapMe-VersionKollada.app */;
+			productType = "com.apple.product-type.application";
+		};
+		8F0123021E9BEA67005F5A2E /* MapMe-VersionKolladaTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8F01231A1E9BEA67005F5A2E /* Build configuration list for PBXNativeTarget "MapMe-VersionKolladaTests" */;
+			buildPhases = (
+				5258C4191D38976450E0EDE8 /* [CP] Check Pods Manifest.lock */,
+				8F0122FF1E9BEA67005F5A2E /* Sources */,
+				8F0123001E9BEA67005F5A2E /* Frameworks */,
+				8F0123011E9BEA67005F5A2E /* Resources */,
+				FBEE7D7D1F55B192BD760406 /* [CP] Embed Pods Frameworks */,
+				FBCC546839A62DA4760488DA /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				8F0123051E9BEA67005F5A2E /* PBXTargetDependency */,
+			);
+			name = "MapMe-VersionKolladaTests";
+			productName = "MapMe-VersionKolladaTests";
+			productReference = 8F0123031E9BEA67005F5A2E /* MapMe-VersionKolladaTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		8F01230D1E9BEA67005F5A2E /* MapMe-VersionKolladaUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8F01231D1E9BEA67005F5A2E /* Build configuration list for PBXNativeTarget "MapMe-VersionKolladaUITests" */;
+			buildPhases = (
+				220F8FA81EAAD753A5EC6F5F /* [CP] Check Pods Manifest.lock */,
+				8F01230A1E9BEA67005F5A2E /* Sources */,
+				8F01230B1E9BEA67005F5A2E /* Frameworks */,
+				8F01230C1E9BEA67005F5A2E /* Resources */,
+				86D716A19B15181C86F78EEC /* [CP] Embed Pods Frameworks */,
+				7452EDE3385F583420B6CDA0 /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				8F0123101E9BEA67005F5A2E /* PBXTargetDependency */,
+			);
+			name = "MapMe-VersionKolladaUITests";
+			productName = "MapMe-VersionKolladaUITests";
+			productReference = 8F01230E1E9BEA67005F5A2E /* MapMe-VersionKolladaUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		8F0122E51E9BEA67005F5A2E /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0830;
+				LastUpgradeCheck = 0830;
+				ORGANIZATIONNAME = "Matt Kollada";
+				TargetAttributes = {
+					8F0122EC1E9BEA67005F5A2E = {
+						CreatedOnToolsVersion = 8.3.1;
+						DevelopmentTeam = PQE422FKS4;
+						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+							com.apple.Keychain = {
+								enabled = 1;
+							};
+						};
+					};
+					8F0123021E9BEA67005F5A2E = {
+						CreatedOnToolsVersion = 8.3.1;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 8F0122EC1E9BEA67005F5A2E;
+					};
+					8F01230D1E9BEA67005F5A2E = {
+						CreatedOnToolsVersion = 8.3.1;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 8F0122EC1E9BEA67005F5A2E;
+					};
+				};
+			};
+			buildConfigurationList = 8F0122E81E9BEA67005F5A2E /* Build configuration list for PBXProject "MapMe-VersionKollada" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 8F0122E41E9BEA67005F5A2E;
+			productRefGroup = 8F0122EE1E9BEA67005F5A2E /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				8F0122EC1E9BEA67005F5A2E /* MapMe-VersionKollada */,
+				8F0123021E9BEA67005F5A2E /* MapMe-VersionKolladaTests */,
+				8F01230D1E9BEA67005F5A2E /* MapMe-VersionKolladaUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		8F0122EB1E9BEA67005F5A2E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8F0122FD1E9BEA67005F5A2E /* LaunchScreen.storyboard in Resources */,
+				8F5054341E9FE6730073A307 /* GoogleService-Info.plist in Resources */,
+				8F0122FA1E9BEA67005F5A2E /* Assets.xcassets in Resources */,
+				8F0122F81E9BEA67005F5A2E /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8F0123011E9BEA67005F5A2E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8F01230C1E9BEA67005F5A2E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		04834B275CBBB707F8124431 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		220F8FA81EAAD753A5EC6F5F /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		5258C4191D38976450E0EDE8 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		556F084162D551ED700285DE /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MapMe-VersionKollada/Pods-MapMe-VersionKollada-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		7452EDE3385F583420B6CDA0 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MapMe-VersionKolladaUITests/Pods-MapMe-VersionKolladaUITests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		79E21FB3A40A9A452BCEEF69 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MapMe-VersionKollada/Pods-MapMe-VersionKollada-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		86D716A19B15181C86F78EEC /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MapMe-VersionKolladaUITests/Pods-MapMe-VersionKolladaUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		FBCC546839A62DA4760488DA /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MapMe-VersionKolladaTests/Pods-MapMe-VersionKolladaTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		FBEE7D7D1F55B192BD760406 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MapMe-VersionKolladaTests/Pods-MapMe-VersionKolladaTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		8F0122E91E9BEA67005F5A2E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8F01232A1E9FE430005F5A2E /* LoginViewController.swift in Sources */,
+				8F0122F51E9BEA67005F5A2E /* SecondViewController.swift in Sources */,
+				8F0122F11E9BEA67005F5A2E /* AppDelegate.swift in Sources */,
+				8F0123261E9FE0A5005F5A2E /* UserProfile.swift in Sources */,
+				8F0123281E9FE3D5005F5A2E /* RegisterViewController.swift in Sources */,
+				8F0122F31E9BEA67005F5A2E /* FirstViewController.swift in Sources */,
+				8F0123241E9D7CD3005F5A2E /* SettingViewController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8F0122FF1E9BEA67005F5A2E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8F0123081E9BEA67005F5A2E /* MapMe_VersionKolladaTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8F01230A1E9BEA67005F5A2E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8F0123131E9BEA67005F5A2E /* MapMe_VersionKolladaUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		8F0123051E9BEA67005F5A2E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8F0122EC1E9BEA67005F5A2E /* MapMe-VersionKollada */;
+			targetProxy = 8F0123041E9BEA67005F5A2E /* PBXContainerItemProxy */;
+		};
+		8F0123101E9BEA67005F5A2E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8F0122EC1E9BEA67005F5A2E /* MapMe-VersionKollada */;
+			targetProxy = 8F01230F1E9BEA67005F5A2E /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		8F0122F61E9BEA67005F5A2E /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				8F0122F71E9BEA67005F5A2E /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		8F0122FB1E9BEA67005F5A2E /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				8F0122FC1E9BEA67005F5A2E /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		8F0123151E9BEA67005F5A2E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		8F0123161E9BEA67005F5A2E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		8F0123181E9BEA67005F5A2E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = F3E6348C5252E9794BE1B4F8 /* Pods-MapMe-VersionKollada.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "MapMe-VersionKollada/MapMe-VersionKollada.entitlements";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = PQE422FKS4;
+				EMBED_ASSET_PACKS_IN_PRODUCT_BUNDLE = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/build/Debug-iphoneos/GeoFire",
+				);
+				INFOPLIST_FILE = "MapMe-VersionKollada/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "mattkollada.MapMe-VersionKollada";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Debug;
+		};
+		8F0123191E9BEA67005F5A2E /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 81F1F589EE1A613F7964AA32 /* Pods-MapMe-VersionKollada.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "MapMe-VersionKollada/MapMe-VersionKollada.entitlements";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = PQE422FKS4;
+				EMBED_ASSET_PACKS_IN_PRODUCT_BUNDLE = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/build/Debug-iphoneos/GeoFire",
+				);
+				INFOPLIST_FILE = "MapMe-VersionKollada/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "mattkollada.MapMe-VersionKollada";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
+		8F01231B1E9BEA67005F5A2E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 85B708EE3D55976DE49CAC02 /* Pods-MapMe-VersionKolladaTests.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = "MapMe-VersionKolladaTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "mkollada.MapMe-VersionKolladaTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MapMe-VersionKollada.app/MapMe-VersionKollada";
+			};
+			name = Debug;
+		};
+		8F01231C1E9BEA67005F5A2E /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4CE2E8E7DA2D27B616AFD398 /* Pods-MapMe-VersionKolladaTests.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = "MapMe-VersionKolladaTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "mkollada.MapMe-VersionKolladaTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MapMe-VersionKollada.app/MapMe-VersionKollada";
+			};
+			name = Release;
+		};
+		8F01231E1E9BEA67005F5A2E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7A1A17DF5D52A20E3ED2C60B /* Pods-MapMe-VersionKolladaUITests.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				INFOPLIST_FILE = "MapMe-VersionKolladaUITests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "mkollada.MapMe-VersionKolladaUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_TARGET_NAME = "MapMe-VersionKollada";
+			};
+			name = Debug;
+		};
+		8F01231F1E9BEA67005F5A2E /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = B5B81A2383DB5DF97C38B8AD /* Pods-MapMe-VersionKolladaUITests.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				INFOPLIST_FILE = "MapMe-VersionKolladaUITests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "mkollada.MapMe-VersionKolladaUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_TARGET_NAME = "MapMe-VersionKollada";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		8F0122E81E9BEA67005F5A2E /* Build configuration list for PBXProject "MapMe-VersionKollada" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8F0123151E9BEA67005F5A2E /* Debug */,
+				8F0123161E9BEA67005F5A2E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		8F0123171E9BEA67005F5A2E /* Build configuration list for PBXNativeTarget "MapMe-VersionKollada" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8F0123181E9BEA67005F5A2E /* Debug */,
+				8F0123191E9BEA67005F5A2E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		8F01231A1E9BEA67005F5A2E /* Build configuration list for PBXNativeTarget "MapMe-VersionKolladaTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8F01231B1E9BEA67005F5A2E /* Debug */,
+				8F01231C1E9BEA67005F5A2E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		8F01231D1E9BEA67005F5A2E /* Build configuration list for PBXNativeTarget "MapMe-VersionKolladaUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8F01231E1E9BEA67005F5A2E /* Debug */,
+				8F01231F1E9BEA67005F5A2E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 8F0122E51E9BEA67005F5A2E /* Project object */;
+}
