@@ -7,12 +7,23 @@
 //
 
 import UIKit
+import Firebase
+import FirebaseAuthUI
 
 class SecondViewController: UIViewController {
-
+    
+    var handle: FIRAuthStateDidChangeListenerHandle?
+    var user: FIRUser?
+    var rootRef: FIRDatabaseReference?
+    var locations: FIRDatabaseReference?
+    var name: FIRDatabaseReference?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        rootRef = FIRDatabase.database().reference()
+        locations = rootRef?.child("locations")
+        name = locations?.child((user?.uid)!)
     }
 
     override func didReceiveMemoryWarning() {
