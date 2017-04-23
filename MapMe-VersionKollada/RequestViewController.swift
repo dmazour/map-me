@@ -1,51 +1,45 @@
 //
-//  SecondViewController.swift
+//  RequestViewController.swift
 //  MapMe-VersionKollada
 //
-//  Created by Matt Kollada on 4/10/17.
+//  Created by Matt Kollada on 4/23/17.
 //  Copyright © 2017 Matt Kollada. All rights reserved.
 //
 
+import Foundation
 import UIKit
-import Firebase
-import FirebaseAuthUI
 
-class SecondViewController: UIViewController {
+class RequestViewController: UIViewController {
     
-    @IBOutlet weak var friendsTableView: UITableView!
-    @IBOutlet weak var tabBarButton: UITabBarItem!
+    
+    @IBOutlet weak var requestTableView: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
-        friendsTableView.dataSource = self
-        FriendSystem.system.addFriendObserver {
-            self.friendsTableView.reloadData()
-        }
+        self.title = "Friend Requests"
+        requestTableView.dataSource = self
         FriendSystem.system.addRequestObserver {
             print(FriendSystem.system.requestList)
+            self.requestTableView.reloadData()
         }
-        
     }
     
-    @IBAction func addFriendsPressed(_ sender: Any) {
-        
-    }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "backToFriends" {
+            let nextScene =  segue.destination as! SecondViewController
+            nextScene.tabBarItem.isEnabled = true
+        }
     }
 }
 
-extension SecondViewController: UITableViewDataSource {
+extension RequestViewController: UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return FriendSystem.system.friendList.count
+        return FriendSystem.system.requestList.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -57,12 +51,12 @@ extension SecondViewController: UITableViewDataSource {
         }
         
         // Modify cell
-        cell!.button.setTitle("Remove", for: UIControlState())
-        cell!.emailLabel.text = FriendSystem.system.friendList[indexPath.row].email
+        cell!.button.setTitle("Accept", for: UIControlState())
+        cell!.emailLabel.text = FriendSystem.system.requestList[indexPath.row].email
         
         cell!.setFunction {
-            let id = FriendSystem.system.friendList[indexPath.row].id
-            FriendSystem.system.removeFriend(id!)
+            let id = FriendSystem.system.requestList[indexPath.row].id
+            FriendSystem.system.acceptFriendRequest(id!)
         }
         
         // Return cell
@@ -70,4 +64,3 @@ extension SecondViewController: UITableViewDataSource {
     }
     
 }
-

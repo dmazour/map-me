@@ -19,6 +19,8 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var alertLabel: UILabel!
     
+    var friendSystem = FriendSystem()
+    
     override func viewDidLoad() {
         alertLabel.isHidden = true
         FIRAuth.auth()!.addStateDidChangeListener() { auth, user in
@@ -26,6 +28,7 @@ class LoginViewController: UIViewController {
                 self.performSegue(withIdentifier: "LoginComplete", sender: nil)
             }
         }
+//        FIRApp.configure()
         
     }
     
@@ -42,28 +45,28 @@ class LoginViewController: UIViewController {
     
     @IBAction func signInAttempted(_ sender: Any) {
         
-        if usernameTextField.text == nil {
-            alertLabel.isHidden = false
-            alertLabel.text = "You must enter a username"
-            
-        }
-        else if usernameTextField.text == nil {
-            alertLabel.isHidden = false
-            alertLabel.text = "You must enter a password"
-        }
-        else {
-            FIRAuth.auth()?.signIn(withEmail: usernameTextField.text!, password: passwordTextField.text!) { (user, error) in
-            // ...
-                if user != nil {
-//                    self.performSegue(withIdentifier: "LoginComplete", sender: nil)
-                }
-                else {
-                    self.alertLabel.text = "Wrong username or password"
+        let email = usernameTextField.text!
+        let password = passwordTextField.text!
+        
+        if email != "" && password.characters.count >= 6 {
+            FriendSystem.system.loginAccount(email, password: password) { (success) in
+                if success {
+                    self.performSegue(withIdentifier: "LoginComplete", sender: self)
+                } else {
+                    // Error
+                    self.presentLoginAlertView()
                 }
             }
-            self.alertLabel.isHidden = false
-            self.alertLabel.text = "Wrong username or password"
-            
+        } else {
+            // Fields not filled
+            presentLoginAlertView()
         }
+    }
+    
+    func presentLoginAlertView() {
+        let alertController = UIAlertController(title: "Error", message: "Email/password is incorrect", preferredStyle: .alert)
+        let defaultAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+        alertController.addAction(defaultAction)
+        present(alertController, animated: true, completion: nil)
     }
 }

@@ -62,7 +62,7 @@ class FirstViewController: UIViewController, CLLocationManagerDelegate, MKMapVie
     var handle: FIRAuthStateDidChangeListenerHandle?
     var user: FIRUser?
     var rootRef: FIRDatabaseReference?
-    var locations: FIRDatabaseReference?
+    var users: FIRDatabaseReference?
     var name: FIRDatabaseReference?
     var locArray: FIRDatabaseReference?
 
@@ -139,14 +139,13 @@ class FirstViewController: UIViewController, CLLocationManagerDelegate, MKMapVie
         for coord in pointDictionary.keys {
             mkMapView.add(MKCircle(center: coord, radius: CLLocationDistance(100*(pointDictionary[coord]!)/coordArray.endIndex)))
         }
-        print("pointDictionary \(pointDictionary.count)")
-        print(regionArray.endIndex)
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         locationManager.pausesLocationUpdatesAutomatically = false
         locationManager.allowsBackgroundLocationUpdates = true
+//        FIRApp.configure()
         user = FIRAuth.auth()?.currentUser
         mkMapView.delegate = self
         mkMapView.showsUserLocation = true
@@ -157,7 +156,6 @@ class FirstViewController: UIViewController, CLLocationManagerDelegate, MKMapVie
             settings = settingsMemory as! [String:Date]
             startDate = settings["startDate"]
             stopDate = settings["stopDate"]
-            print(0)
         }
         else {
             startDate = Date(timeIntervalSince1970: 0)
@@ -166,14 +164,13 @@ class FirstViewController: UIViewController, CLLocationManagerDelegate, MKMapVie
         
         //Set FireBase Database references
         rootRef = FIRDatabase.database().reference()
-        locations = rootRef?.child("locations")
-        name = locations?.child((user?.uid)!)
+        users = rootRef?.child("users")
+        name = users?.child((user?.uid)!)
         locArray = name?.child("location array")
         
         //receives raw firebase location data from firebase and places it into array locs
         locArray?.observe(.value, with: { snapshot in
             if snapshot.value is NSNull {
-                print("locs is null")
                 self.locs = []
             }
             else {
@@ -306,7 +303,6 @@ class FirstViewController: UIViewController, CLLocationManagerDelegate, MKMapVie
                 regionArray.append(MKCoordinateRegionMakeWithDistance(coord, 50, 50))
             }
         }
-        
     }
     
     //starts updating location and then immediately stops it
@@ -355,7 +351,6 @@ class FirstViewController: UIViewController, CLLocationManagerDelegate, MKMapVie
         locs.append(addLoc.horizontalAccuracy)
         locs.append(addLoc.verticalAccuracy)
         
-        print("location updating")
         self.locationManager.stopUpdatingLocation()
         //let howRecent = someLocation.timestamp.timeIntervalSinceNow
     }

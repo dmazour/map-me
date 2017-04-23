@@ -15,17 +15,13 @@ import UIKit
 class RegisterViewController: UIViewController {
     
     var ref : FIRDatabaseReference?
-    var profile: UserProfile?
     var handle: FIRAuthStateDidChangeListenerHandle?
     
     @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var usernameTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
-    @IBOutlet weak var alertLabel: UILabel!
     
     override func viewDidLoad() {
-        alertLabel.isHidden = true
-        profile = UserProfile()
         ref = FIRDatabase.database().reference(withPath: "user-profiles")
         // 1
         FIRAuth.auth()!.addStateDidChangeListener() { auth, user in
@@ -47,42 +43,38 @@ class RegisterViewController: UIViewController {
     }
     
     @IBAction func userRegistered(_ sender: Any) {
-        if (nameTextField.text == nil) {
-            alertLabel.text = "You must enter a name"
-            alertLabel.isHidden = false
-        }
-        else if usernameTextField.text == nil {
-            alertLabel.text = "You must enter a username"
-            alertLabel.isHidden = false
-        }
-        else if passwordTextField.text == nil {
-            alertLabel.text = "You must enter a password"
-            alertLabel.isHidden = false
+        
+        let email = usernameTextField.text!
+        let password = passwordTextField.text!
+        let name = nameTextField.text!
+        
+        print(email, password, name)
+        
+        if email != "" && password.characters.count >= 6 {
+            FriendSystem.system.createAccount(email, password: password, name: name) { (success) in
+                if success {
+                    self.performSegue(withIdentifier: "RegistrationComplete", sender: self)
+                }
+                else {
+                    // Error
+                    self.presentSignupAlertView()
+                }
+            }
         }
         else {
-            alertLabel.isHidden = true
-            profile?.name = nameTextField.text!
-            profile?.username = usernameTextField.text!
-            profile?.password = passwordTextField.text!
-            print("user name: " + (profile?.username)!)
-            print("password: " + (profile?.password)!)
-            
-            FIRAuth.auth()?.createUser(withEmail: (profile?.username)!, password: (profile?.password)!) { (user, error) in
-                // ...
-                print("should be created")
-                if error == nil {
-                    FIRAuth.auth()?.signIn(withEmail: (self.profile?.username)!, password: (self.profile?.password)!)
-                }
-//                self.performSegue(withIdentifier: "Registration Complete", sender: nil)
-                
-            }
-            
-//            let profileRef = self.ref?.child((profile?.name)!)
-//            
-//            profileRef?.setValue(profile?.toAnyObject()
-            
-            
-            
+            // Fields not filled
+            presentSignupAlertView()
         }
+            
+        
     }
+    
+    func presentSignupAlertView() {
+        let alertController = UIAlertController(title: "Error", message: "Couldn't create account", preferredStyle: .alert)
+        let defaultAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+        alertController.addAction(defaultAction)
+        present(alertController, animated: true, completion: nil)
+    }
+    
 }
+
