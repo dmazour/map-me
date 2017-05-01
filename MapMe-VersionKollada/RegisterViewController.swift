@@ -12,11 +12,13 @@ import FirebaseDatabase
 import FirebaseAuthUI
 import UIKit
 
-class RegisterViewController: UIViewController {
+class RegisterViewController: UIViewController, UITextFieldDelegate {
     
     var ref : FIRDatabaseReference?
     var handle: FIRAuthStateDidChangeListenerHandle?
     
+    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var grayBackgroundLabel: UILabel!
     @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var usernameTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
@@ -24,11 +26,23 @@ class RegisterViewController: UIViewController {
     override func viewDidLoad() {
         ref = FIRDatabase.database().reference(withPath: "user-profiles")
         // 1
+        usernameTextField.delegate = self
+        passwordTextField.delegate = self
         FIRAuth.auth()!.addStateDidChangeListener() { auth, user in
             if user != nil {
                 self.performSegue(withIdentifier: "RegistrationComplete", sender: nil)
             }
         }
+        addBackground()
+        grayBackgroundLabel.layer.masksToBounds = true
+       grayBackgroundLabel.layer.cornerRadius = 10
+        titleLabel.layer.masksToBounds = true
+        titleLabel.layer.cornerRadius = 20
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        self.view.endEditing(true)
+        return false
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -75,6 +89,21 @@ class RegisterViewController: UIViewController {
         alertController.addAction(defaultAction)
         present(alertController, animated: true, completion: nil)
     }
+    func addBackground() {
+        // screen width and height:
+        let width = UIScreen.main.bounds.size.width
+        let height = UIScreen.main.bounds.size.height
+        
+        let imageViewBackground = UIImageView(frame: CGRect(x: 0,y: 0,width: width,height: height))
+        imageViewBackground.image = #imageLiteral(resourceName: "ncBackgroundMap")
+        imageViewBackground.alpha = 0.75
+        // you can change the content mode:
+        imageViewBackground.contentMode = UIViewContentMode.scaleAspectFill
+        
+        self.view.addSubview(imageViewBackground)
+        self.view.sendSubview(toBack: imageViewBackground)
+    }
+
     
 }
 

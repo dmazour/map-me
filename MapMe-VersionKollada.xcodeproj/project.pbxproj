@@ -31,6 +31,9 @@
 		8F609AEF1EAD3284003B0812 /* UserCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8F609AEE1EAD3284003B0812 /* UserCell.xib */; };
 		8F609AF11EAD3712003B0812 /* RequestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F609AF01EAD3712003B0812 /* RequestViewController.swift */; };
 		8F609AF31EAD3B25003B0812 /* UserListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F609AF21EAD3B25003B0812 /* UserListViewController.swift */; };
+		8F9A3C1B1EAD781B00144448 /* marcelo-magalhães_giro in Resources */ = {isa = PBXBuildFile; fileRef = 8F9A3C191EAD781B00144448 /* marcelo-magalhães_giro */; };
+		8F9A3C1C1EAD781B00144448 /* studiotypo_typografix in Resources */ = {isa = PBXBuildFile; fileRef = 8F9A3C1A1EAD781B00144448 /* studiotypo_typografix */; };
+		8F9A3C1D1EAD81DC00144448 /* Typografix-demo.otf in Resources */ = {isa = PBXBuildFile; fileRef = 8F9A3C161EAD780C00144448 /* Typografix-demo.otf */; };
 		B9FCBFBB1455F674C045D55D /* Pods_MapMe_VersionKollada.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D437D0CC97E7085A0A13CE54 /* Pods_MapMe_VersionKollada.framework */; };
 /* End PBXBuildFile section */
 
@@ -87,6 +90,11 @@
 		8F609AEE1EAD3284003B0812 /* UserCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserCell.xib; sourceTree = "<group>"; };
 		8F609AF01EAD3712003B0812 /* RequestViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestViewController.swift; sourceTree = "<group>"; };
 		8F609AF21EAD3B25003B0812 /* UserListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserListViewController.swift; sourceTree = "<group>"; };
+		8F9A3C161EAD780C00144448 /* Typografix-demo.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Typografix-demo.otf"; sourceTree = "<group>"; };
+		8F9A3C171EAD780C00144448 /* girooutline001.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = girooutline001.otf; sourceTree = "<group>"; };
+		8F9A3C181EAD780C00144448 /* girolight001.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = girolight001.otf; sourceTree = "<group>"; };
+		8F9A3C191EAD781B00144448 /* marcelo-magalhães_giro */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "marcelo-magalhães_giro"; sourceTree = "<group>"; };
+		8F9A3C1A1EAD781B00144448 /* studiotypo_typografix */ = {isa = PBXFileReference; lastKnownFileType = folder; path = studiotypo_typografix; sourceTree = "<group>"; };
 		99DEA121D07DBADB6E753B62 /* Pods_MapMe_VersionKolladaUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MapMe_VersionKolladaUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B5B81A2383DB5DF97C38B8AD /* Pods-MapMe-VersionKolladaUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MapMe-VersionKolladaUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-MapMe-VersionKolladaUITests/Pods-MapMe-VersionKolladaUITests.release.xcconfig"; sourceTree = "<group>"; };
 		D437D0CC97E7085A0A13CE54 /* Pods_MapMe_VersionKollada.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MapMe_VersionKollada.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -127,6 +135,9 @@
 		8F0122E41E9BEA67005F5A2E = {
 			isa = PBXGroup;
 			children = (
+				8F9A3C161EAD780C00144448 /* Typografix-demo.otf */,
+				8F9A3C171EAD780C00144448 /* girooutline001.otf */,
+				8F9A3C181EAD780C00144448 /* girolight001.otf */,
 				8F0122EF1E9BEA67005F5A2E /* MapMe-VersionKollada */,
 				8F0123061E9BEA67005F5A2E /* MapMe-VersionKolladaTests */,
 				8F0123111E9BEA67005F5A2E /* MapMe-VersionKolladaUITests */,
@@ -149,6 +160,8 @@
 		8F0122EF1E9BEA67005F5A2E /* MapMe-VersionKollada */ = {
 			isa = PBXGroup;
 			children = (
+				8F9A3C191EAD781B00144448 /* marcelo-magalhães_giro */,
+				8F9A3C1A1EAD781B00144448 /* studiotypo_typografix */,
 				8F5054361EA3E0310073A307 /* MapMe-VersionKollada.entitlements */,
 				8F0122F01E9BEA67005F5A2E /* AppDelegate.swift */,
 				8F0122F21E9BEA67005F5A2E /* FirstViewController.swift */,
@@ -343,10 +356,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				8F0122FD1E9BEA67005F5A2E /* LaunchScreen.storyboard in Resources */,
+				8F9A3C1D1EAD81DC00144448 /* Typografix-demo.otf in Resources */,
 				8F5054341E9FE6730073A307 /* GoogleService-Info.plist in Resources */,
 				8F0122FA1E9BEA67005F5A2E /* Assets.xcassets in Resources */,
+				8F9A3C1C1EAD781B00144448 /* studiotypo_typografix in Resources */,
 				8F0122F81E9BEA67005F5A2E /* Main.storyboard in Resources */,
 				8F609AEF1EAD3284003B0812 /* UserCell.xib in Resources */,
+				8F9A3C1B1EAD781B00144448 /* marcelo-magalhães_giro in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

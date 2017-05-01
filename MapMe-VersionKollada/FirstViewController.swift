@@ -51,8 +51,8 @@ class FirstViewController: UIViewController, CLLocationManagerDelegate, MKMapVie
 
     @IBOutlet weak var mkMapView: MKMapView!
     let locationManager = CLLocationManager()
-    var locationArray: [CLLocation] = []
-    var coordArray: [CLLocationCoordinate2D] = []
+    var locationArray: [String:[CLLocation]] = [String:[CLLocation]]()
+    var coordArray: [String:[CLLocationCoordinate2D]] = [String:[CLLocationCoordinate2D]]()
     var path: MKPolyline?
     var adjustedRegion: MKCoordinateRegion?
     var polyLineRenderer : MKPolylineRenderer?
@@ -79,11 +79,13 @@ class FirstViewController: UIViewController, CLLocationManagerDelegate, MKMapVie
     
     
     //Arrays to store and receive data
-    var locs: [Double] = []
+//    var locs: [Double] = []
+    var locDictionary: [String:[Double]] = [String:[Double]]()
+    
     
     //CIRCLE VISUALIZATION!
     //var regionArray: [CLLocationCoordinate2D] = []
-    var regionArray: [MKCoordinateRegion] = []
+    var regionArray: [String:[MKCoordinateRegion]] = [String:[MKCoordinateRegion]]()
     //every 15 minutes, update regionArray
     var isExistingLocation: Bool = false
     var currRegion: MKCoordinateRegion!
@@ -112,7 +114,10 @@ class FirstViewController: UIViewController, CLLocationManagerDelegate, MKMapVie
     //      d) regionArray
     
     //var pointDictionary = [CLLocationCoordinate2D:Int]()
-    var pointDictionary = [CLLocationCoordinate2D:Int]()
+    var dictOfPointDicts = [String:[CLLocationCoordinate2D:Int]]()
+    
+    var selectedUsers = [User]()
+    var currentUser: User?
     
     override func viewDidAppear(_ animated: Bool) {
         locationManager.pausesLocationUpdatesAutomatically = false
@@ -126,19 +131,41 @@ class FirstViewController: UIViewController, CLLocationManagerDelegate, MKMapVie
             stopDate = Date(timeIntervalSinceNow: 0)
         }
         
-        if locationArray.endIndex > 0 {
-            self.updateCoordArrayForSettings()
+        selectedUsers = []
+        
+        currentUser = User(userEmail: (FIRAuth.auth()?.currentUser?.email)!, userID: FriendSystem.system.CURRENT_USER_ID)
+        selectedUsers.append(currentUser!)
+        
+        for friend in FriendSystem.system.friendList {
+            selectedUsers.append(friend)
         }
         
-        clearMap()
-        loadPointDictionaryWithHistoricalRegions()
-        if !coordArray.isEmpty {
-            adjustedRegion = mkMapView.regionThatFits(regionForCoordinates(coordinates: coordArray))
-            mkMapView.setRegion(adjustedRegion!, animated: true)
+//        for user in selectedUsers {
+//            locationArray[user.id] = []
+//            coordArray[user.id] = []
+//            dictOfPointDicts[user.id] = [:]
+//            regionArray[user.id] = []
+//            locDictionary[user.id] = []
+//        }
+        for user in selectedUsers {
+//            if (locationArray[user.id]?.endIndex)! > 0 {
+            self.updateCoordArrayForSettings(id: user.id)
+//            }
+            
+            
+            loadPointDictionaryWithHistoricalRegions(id: user.id)
+            if coordArray[user.id] == nil {
+                continue
+            }
+            for coord in (dictOfPointDicts[user.id]?.keys)! {
+                mkMapView.add(MKCircle(center: coord, radius: CLLocationDistance(100*(dictOfPointDicts[user.id]?[coord]!)!/(coordArray[user.id]?.endIndex)!)))
+            }
         }
-        for coord in pointDictionary.keys {
-            mkMapView.add(MKCircle(center: coord, radius: CLLocationDistance(100*(pointDictionary[coord]!)/coordArray.endIndex)))
-        }
+//        if !(coordArray[user.id]?.isEmpty)! {
+//            adjustedRegion = mkMapView.regionThatFits(regionForCoordinates(coordinates: (coordArray[user.id])!))
+//            mkMapView.setRegion(adjustedRegion!, animated: true)
+//        }
+
     }
     
     override func viewDidLoad() {
@@ -152,6 +179,10 @@ class FirstViewController: UIViewController, CLLocationManagerDelegate, MKMapVie
         locationManager.delegate = self
         locationManager.requestAlwaysAuthorization()
 
+        FriendSystem.system.addFriendObserver { () in
+            
+        }
+        
         if let settingsMemory = memory.dictionary(forKey: "settings"){
             settings = settingsMemory as! [String:Date]
             startDate = settings["startDate"]
@@ -162,6 +193,21 @@ class FirstViewController: UIViewController, CLLocationManagerDelegate, MKMapVie
             stopDate = Date(timeIntervalSinceNow: 0)
         }
         
+        currentUser = User(userEmail: (FIRAuth.auth()?.currentUser?.email)!, userID: FriendSystem.system.CURRENT_USER_ID)
+        selectedUsers.append(currentUser!)
+        
+        for friend in FriendSystem.system.friendList {
+            selectedUsers.append(friend)
+        }
+        
+        for user in selectedUsers {
+            locationArray[user.id] = []
+            coordArray[user.id] = []
+            dictOfPointDicts[user.id] = [:]
+            regionArray[user.id] = []
+            locDictionary[user.id] = []
+        }
+        
         //Set FireBase Database references
         rootRef = FIRDatabase.database().reference()
         users = rootRef?.child("users")
@@ -169,35 +215,41 @@ class FirstViewController: UIViewController, CLLocationManagerDelegate, MKMapVie
         locArray = name?.child("location array")
         
         //receives raw firebase location data from firebase and places it into array locs
-        locArray?.observe(.value, with: { snapshot in
-            if snapshot.value is NSNull {
-                self.locs = []
+        users?.observe(.value, with: { snapshot in
+            for user in self.selectedUsers {
+                if snapshot.childSnapshot(forPath: user.id).childSnapshot(forPath: "location array").value is NSNull {
+                    self.locDictionary[user.id] = []
+                }
+                else {
+                    self.locDictionary[user.id] = (snapshot.childSnapshot(forPath: user.id).childSnapshot(forPath: "location array").value as! [Double])
+                }
+                //adds data to locationArray
+                self.downloadFirebaseData(id: user.id)
+                self.updateCoordArrayForSettings(id: user.id)
+                self.loadPointDictionaryWithHistoricalRegions(id: user.id)
+                if self.dictOfPointDicts[user.id]?.keys == nil {
+                    
+                }
+                else {
+                    for coord in (self.dictOfPointDicts[user.id]?.keys)! {
+                        self.mkMapView.add(MKCircle(center: coord, radius: CLLocationDistance(log(Double(100*(self.dictOfPointDicts[user.id]![coord]!)/self.coordArray[user.id]!.endIndex)))))
+                    }
+                }
+                if self.coordArray[user.id] != nil {
+                    if !(self.coordArray[user.id]?.isEmpty)! {
+                        self.adjustedRegion = self.mkMapView.regionThatFits(self.regionForCoordinates(coordinates: self.coordArray[user.id]!))
+                        self.mkMapView.setRegion(self.adjustedRegion!, animated: true)
+                    }
+                }
+                
+                //            self.locationManager.startUpdatingLocation()
+                
+                //runs appendToCircles array every 300 secs currently. can change by changing timeInterval
+                self.circleTimer = Timer.scheduledTimer(timeInterval: 5, target: self, selector: #selector(self.updateRegions), userInfo: nil, repeats: true)
+                
+                //changes how frequently location is updated by firing updateLocation() at specific time intervals
+                self.locationTimer = Timer.scheduledTimer(timeInterval: 5, target: self, selector: #selector(self.updateLocation), userInfo: nil, repeats: true)
             }
-            else {
-                self.locs = (snapshot.value as! [Double])
-            }
-            
-            //adds data to locationArray
-            self.downloadFirebaseData()
-            self.updateCoordArrayForSettings()
-            self.loadPointDictionaryWithHistoricalRegions()
-            for coord in self.pointDictionary.keys {
-                self.mkMapView.add(MKCircle(center: coord, radius: CLLocationDistance(log(Double(100*(self.pointDictionary[coord]!)/self.coordArray.endIndex)))))
-            }
-            if self.coordArray.isEmpty {
-            }
-            else {
-                self.adjustedRegion = self.mkMapView.regionThatFits(self.regionForCoordinates(coordinates: self.coordArray))
-                self.mkMapView.setRegion(self.adjustedRegion!, animated: true)
-            }
-            
-//            self.locationManager.startUpdatingLocation()
-            
-            //runs appendToCircles array every 300 secs currently. can change by changing timeInterval
-            self.circleTimer = Timer.scheduledTimer(timeInterval: 30, target: self, selector: #selector(self.updateRegions), userInfo: nil, repeats: true)
-            
-            //changes how frequently location is updated by firing updateLocation() at specific time intervals
-            self.locationTimer = Timer.scheduledTimer(timeInterval: 30, target: self, selector: #selector(self.updateLocation), userInfo: nil, repeats: true)
         })
         
         
@@ -223,21 +275,25 @@ class FirstViewController: UIViewController, CLLocationManagerDelegate, MKMapVie
     override func viewWillDisappear(_ animated: Bool) {
         FIRAuth.auth()?.removeStateDidChangeListener(handle!)
         //sends loc information to firebase
-        locArray?.setValue(locs)
+        locArray?.setValue(locDictionary[FriendSystem.system.CURRENT_USER_ID])
     }
     
     //takes array received from firebase, turns data into CLLocation objects, and appends to location array
-    func downloadFirebaseData() {
-        locationArray = []
-        if  locs.endIndex > 0 {
-            for i in 0...(locs.endIndex/6)-1 {
-                locationArray.append(CLLocation(coordinate: CLLocationCoordinate2D(latitude: (locs[6*i]), longitude: (locs[6*i + 1])), altitude: (locs[6*i + 2]), horizontalAccuracy: (locs[6*i + 4]), verticalAccuracy: (locs[6*i + 5]), timestamp: Date(timeIntervalSince1970: (locs[6*i + 3]))))
-//                coordArray.append(CLLocationCoordinate2D(latitude: locs[6*i], longitude: locs[6*i + 1]))
+    func downloadFirebaseData(id: String) {
+        locationArray = [:]
+//        for user in selectedUsers {
+            locationArray[id] = []
+            print(locDictionary[id])
+            if (locDictionary[id]!.endIndex) > 0{
+                for i in 0...((locDictionary[id]?.endIndex)!/6)-1 {
+                    locationArray[id]!.append(CLLocation(coordinate: CLLocationCoordinate2D(latitude: (locDictionary[id]?[6*i])!, longitude: (locDictionary[id]?[6*i + 1])!), altitude: (locDictionary[id]?[6*i + 2])!, horizontalAccuracy: (locDictionary[id]?[6*i + 4])!, verticalAccuracy: (locDictionary[id]?[6*i + 5])!, timestamp: Date(timeIntervalSince1970: (locDictionary[id]?[6*i + 3])!)))
+                }
             }
-        }
+//        }
     }
     
     func clearMap() {
+        print("map was cleared")
         let overlays = mkMapView.overlays
     
         if !overlays.isEmpty {
@@ -245,30 +301,37 @@ class FirstViewController: UIViewController, CLLocationManagerDelegate, MKMapVie
         }
     }
     
-    func updateCoordArrayForSettings() {
+    func updateCoordArrayForSettings(id: String) {
         var startIndex = 0
-        coordArray = []
-        if locationArray.isEmpty {
-            return
-        }
-        for i in 0...locationArray.count-1 {
-            if locationArray[i].timestamp < startDate! {
-                
+        coordArray = [:]
+//        for user in selectedUsers {
+            coordArray[id] = []
+            if locationArray[id] == nil {
+                return
             }
-            else {
-                startIndex = i
-                break
+            else if (locationArray[id]?.isEmpty)! {
+                return
             }
-        }
-        
-        for i in startIndex...locationArray.count-1 {
-            if locationArray[i].timestamp < stopDate! {
-                coordArray.append(locationArray[i].coordinate)
+            for i in 0...(locationArray[id]?.count)!-1 {
+                if (locationArray[id]?[i].timestamp)! < startDate! {
+                    
+                }
+                else {
+                    startIndex = i
+                    break
+                }
             }
-            else {
-                break
+            
+            for i in startIndex...(locationArray[id]?.count)!-1 {
+                if (locationArray[id]?[i].timestamp)! < stopDate! {
+                    coordArray[id]!.append(locationArray[id]![i].coordinate)
+                }
+                else {
+                    break
+                }
             }
-        }
+//        }
+        print(coordArray)
     }
     
     //POINT DICTIONARY will be populated with Firebase location data
@@ -279,30 +342,38 @@ class FirstViewController: UIViewController, CLLocationManagerDelegate, MKMapVie
     //      b) append to regionArray: a new MKCoordinateRegion with this coordinate as its center and 25m radius.
     //  3) If yes:
     //      a) increment that coordinate's count in the pointDictionary
-    func loadPointDictionaryWithHistoricalRegions() {
-        pointDictionary = [:]
-        regionArray = []
-        for coord in coordArray {
-            var isInExistingRegion = false
-            for existingRegion in regionArray {
-                if (isCoordinateInsideRegion(coordinate: coord, region: existingRegion)){
-                    //coord is within an existing region
-                    pointDictionary[existingRegion.center] = pointDictionary[existingRegion.center]! + 1
-                    isInExistingRegion = true
+    func loadPointDictionaryWithHistoricalRegions(id: String) {
+        dictOfPointDicts = [:]
+        regionArray = [:]
+//        for user in selectedUsers {
+//            print(user.id)
+//            print(coordArray[user.id])
+            if coordArray[id] == nil {
+                return
+            }
+            regionArray[id] = []
+            dictOfPointDicts[id] = [:]
+            for coord in coordArray[id]! {
+                var isInExistingRegion = false
+                for existingRegion in regionArray[id]! {
+                    if (isCoordinateInsideRegion(coordinate: coord, region: existingRegion)){
+                        //coord is within an existing region
+                        dictOfPointDicts[id]![existingRegion.center] = dictOfPointDicts[id]![existingRegion.center]! + 2
+                        isInExistingRegion = true
+                    }
+                    else{
+                        //coord is not within this region
+                        continue
+                    }
                 }
-                else{
-                    //coord is not within this region
-                    continue
+                if !isInExistingRegion {
+                    //coord is not within any region
+                    //append to regionArray
+                    dictOfPointDicts[id]?[coord] = -1
+                    regionArray[id]!.append(MKCoordinateRegionMakeWithDistance(coord, 50, 50))
                 }
             }
-            if !isInExistingRegion {
-                //coord is not within any region
-                //append to regionArray
-                pointDictionary[coord] = 1
-                //regionArray.append(MKCoordinateRegionMake(coord, MKCoordinateSpanMake(0.00022522522, 0.00022522522)))
-                regionArray.append(MKCoordinateRegionMakeWithDistance(coord, 50, 50))
-            }
-        }
+//        }
     }
     
     //starts updating location and then immediately stops it
@@ -310,9 +381,15 @@ class FirstViewController: UIViewController, CLLocationManagerDelegate, MKMapVie
     func updateLocation() {
         locationManager.startUpdatingLocation()
         
-        clearMap()
-        for coord in pointDictionary.keys {
-            mkMapView.add(MKCircle(center: coord, radius: CLLocationDistance(100*(pointDictionary[coord]!)/coordArray.endIndex)))
+//        clearMap()
+        for user in selectedUsers {
+            print(user.email)
+            if self.dictOfPointDicts[user.id]?.keys == nil {
+                continue
+            }
+            for coord in (self.dictOfPointDicts[user.id]?.keys)! {
+                mkMapView.add(MKCircle(center: coord, radius: CLLocationDistance(100*(dictOfPointDicts[user.id]?[coord]!)!/(coordArray[user.id]?.endIndex)!)))
+            }
         }
     }
     
@@ -334,8 +411,8 @@ class FirstViewController: UIViewController, CLLocationManagerDelegate, MKMapVie
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         let addLoc = locations[locations.endIndex-1]
-        locationArray.append(addLoc)
-        coordArray.append(addLoc.coordinate)
+        locationArray[FriendSystem.system.CURRENT_USER_ID]?.append(addLoc)
+        coordArray[FriendSystem.system.CURRENT_USER_ID]?.append(addLoc.coordinate)
 //        path = MKPolyline(coordinates: &coordArray, count: coordArray.count)
 //        polyLineRenderer = mapView(mkMapView, rendererFor: path!) as? MKPolylineRenderer
 //        polyLineRenderer?.strokeColor = UIColor.blue
@@ -344,13 +421,12 @@ class FirstViewController: UIViewController, CLLocationManagerDelegate, MKMapVie
         
         
         //loads loc information to locs to be sent to firebase
-        locs.append(addLoc.coordinate.latitude)
-        locs.append(addLoc.coordinate.longitude)
-        locs.append(addLoc.altitude)
-        locs.append(addLoc.timestamp.timeIntervalSince1970)
-        locs.append(addLoc.horizontalAccuracy)
-        locs.append(addLoc.verticalAccuracy)
-        
+        locDictionary[FriendSystem.system.CURRENT_USER_ID]?.append(addLoc.coordinate.latitude as Double)
+        locDictionary[FriendSystem.system.CURRENT_USER_ID]?.append(addLoc.coordinate.longitude as Double)
+        locDictionary[FriendSystem.system.CURRENT_USER_ID]?.append(addLoc.altitude as Double)
+        locDictionary[FriendSystem.system.CURRENT_USER_ID]?.append(addLoc.timestamp.timeIntervalSince1970 as Double)
+        locDictionary[FriendSystem.system.CURRENT_USER_ID]?.append(addLoc.horizontalAccuracy as Double)
+        locDictionary[FriendSystem.system.CURRENT_USER_ID]?.append(addLoc.verticalAccuracy as Double)
         self.locationManager.stopUpdatingLocation()
         //let howRecent = someLocation.timestamp.timeIntervalSinceNow
     }
@@ -364,37 +440,41 @@ class FirstViewController: UIViewController, CLLocationManagerDelegate, MKMapVie
         //      c) pointDictionary with count = 1, and
         //      d) regionArray
         func updateRegions(){
-            for region in regionArray {
-                if(isCoordinateInsideRegion(coordinate: coordArray[coordArray.endIndex-1], region: region)){
-                    isExistingLocation = true
-                    currRegion = region
-                    break
+                if regionArray[FriendSystem.system.CURRENT_USER_ID] == nil {
+                    return
                 }
-            }
-            if(isExistingLocation){
-                //increase radius of existing circle = (constant + increase)*(scale factor based on time period displayed)
-                //how do we access an existing circle?
-                mkMapView.add(MKCircle(center: currRegion.center, radius: CLLocationDistance(100*pointDictionary[currRegion.center]!)))
-                pointDictionary[currRegion.center] = pointDictionary[currRegion.center]! + 1
-            }
-            else{
-                //append MKCoordinateRegion to the regionArray with center at current point and radius of 25 meters
-                if !coordArray.isEmpty {
-                    pointDictionary[coordArray[coordArray.endIndex-1]] = 1
-                    //regionArray.append(MKCoordinateRegionMake(coordArray[coordArray.endIndex-1], MKCoordinateSpanMake(0.00022522522, 0.00022522522)))
-                    regionArray.append(MKCoordinateRegionMakeWithDistance(coordArray[coordArray.endIndex-1], 50, 50))
+                for region in regionArray[FriendSystem.system.CURRENT_USER_ID]! {
+                    if(isCoordinateInsideRegion(coordinate: (coordArray[FriendSystem.system.CURRENT_USER_ID]?[(coordArray[FriendSystem.system.CURRENT_USER_ID]?.endIndex)!-1])!, region: region)){
+                        isExistingLocation = true
+                        currRegion = region
+                        break
+                    }
+                }
+                if(isExistingLocation){
+                    //increase radius of existing circle = (constant + increase)*(scale factor based on time period displayed)
+                    //how do we access an existing circle?
+                    print(dictOfPointDicts[FriendSystem.system.CURRENT_USER_ID])
+                    mkMapView.add(MKCircle(center: currRegion.center, radius: CLLocationDistance(100*(dictOfPointDicts[FriendSystem.system.CURRENT_USER_ID]?[currRegion.center])!)))
+                    self.dictOfPointDicts[FriendSystem.system.CURRENT_USER_ID]?[currRegion.center] = (self.dictOfPointDicts[FriendSystem.system.CURRENT_USER_ID]?[currRegion.center]!)! + 2
+                }
+                else{
+                    //append MKCoordinateRegion to the regionArray with center at current point and radius of 25 meters
+                    if !(coordArray[FriendSystem.system.CURRENT_USER_ID]?.isEmpty)! {
+                        self.dictOfPointDicts[FriendSystem.system.CURRENT_USER_ID]?[(coordArray[FriendSystem.system.CURRENT_USER_ID]?[(coordArray[FriendSystem.system.CURRENT_USER_ID]?.endIndex)!-1])!] = 1
+                        regionArray[FriendSystem.system.CURRENT_USER_ID]?.append(MKCoordinateRegionMakeWithDistance((coordArray[FriendSystem.system.CURRENT_USER_ID]?[(coordArray[FriendSystem.system.CURRENT_USER_ID]?.endIndex)!-1])!, 50, 50))
+                        
+                        //draw circle with radius = constant*(scale factor based on time period displayed)
+                        mkMapView.add(MKCircle(center: (coordArray[FriendSystem.system.CURRENT_USER_ID]?[(coordArray[FriendSystem.system.CURRENT_USER_ID]?.endIndex)!-1])!, radius: 1))
+                    }
                     
-                    //draw circle with radius = constant*(scale factor based on time period displayed)
-                    mkMapView.add(MKCircle(center: coordArray[coordArray.endIndex-1], radius: 1))
+                    //            path = MKPolyline(coordinates: &coordArray, count: coordArray.count)
+                    //            print(coordArray)
+                    //            polyLineRenderer = mapView(mkMapView, rendererFor: path!) as? MKPolylineRenderer
+                    //            polyLineRenderer?.strokeColor = UIColor.blue
+                    //            polyLineRenderer?.lineWidth = 5
+                    //            self.mkMapView.add(path!, level: MKOverlayLevel.aboveLabels)
                 }
-                
-                //            path = MKPolyline(coordinates: &coordArray, count: coordArray.count)
-                //            print(coordArray)
-                //            polyLineRenderer = mapView(mkMapView, rendererFor: path!) as? MKPolylineRenderer
-                //            polyLineRenderer?.strokeColor = UIColor.blue
-                //            polyLineRenderer?.lineWidth = 5
-                //            self.mkMapView.add(path!, level: MKOverlayLevel.aboveLabels)
-            }
+            
         }
     
         //https://gist.github.com/swissmanu/4943356

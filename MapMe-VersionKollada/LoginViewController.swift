@@ -11,25 +11,43 @@ import UIKit
 import Firebase
 import FirebaseAuthUI
 
-class LoginViewController: UIViewController {
+class LoginViewController: UIViewController, UITextFieldDelegate {
     
     var handle:FIRAuthStateDidChangeListenerHandle?
     
+    @IBOutlet weak var grayBackground: UILabel!
+    @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var usernameTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var alertLabel: UILabel!
     
+    @IBOutlet weak var registerButton: UIButton!
     var friendSystem = FriendSystem()
     
     override func viewDidLoad() {
-        alertLabel.isHidden = true
+//        alertLabel.isHidden = true
+        self.usernameTextField.delegate = self
+        self.passwordTextField.delegate = self
         FIRAuth.auth()!.addStateDidChangeListener() { auth, user in
             if user != nil {
                 self.performSegue(withIdentifier: "LoginComplete", sender: nil)
             }
         }
 //        FIRApp.configure()
-        
+        grayBackground.layer.masksToBounds = true
+        grayBackground.layer.cornerRadius = 50
+        titleLabel.layer.masksToBounds = true
+        titleLabel.layer.cornerRadius = 20
+        let attributeString = NSMutableAttributedString(string: "Register",
+                                                        attributes: yourAttributes)
+        registerButton.setAttributedTitle(attributeString, for: .normal)
+        addBackground()
+
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        self.view.endEditing(true)
+        return false
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -69,4 +87,24 @@ class LoginViewController: UIViewController {
         alertController.addAction(defaultAction)
         present(alertController, animated: true, completion: nil)
     }
+    let yourAttributes : [String: Any] = [
+        NSFontAttributeName : UIFont.systemFont(ofSize: 14),
+        NSForegroundColorAttributeName : UIColor.white,
+        NSUnderlineStyleAttributeName : NSUnderlineStyle.styleSingle.rawValue]
+    //.styleDouble.rawValue, .styleThick.rawValue, .styleNone.rawValue
+    func addBackground() {
+        // screen width and height:
+        let width = UIScreen.main.bounds.size.width
+        let height = UIScreen.main.bounds.size.height
+        
+        let imageViewBackground = UIImageView(frame: CGRect(x: 0,y: 0,width: width,height: height))
+        imageViewBackground.image = #imageLiteral(resourceName: "ncBackgroundMap")
+        imageViewBackground.alpha = 0.75
+        // you can change the content mode:
+        imageViewBackground.contentMode = UIViewContentMode.scaleAspectFill
+        
+        self.view.addSubview(imageViewBackground)
+        self.view.sendSubview(toBack: imageViewBackground)
+    }
+
 }

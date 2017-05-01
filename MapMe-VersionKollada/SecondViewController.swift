@@ -23,7 +23,7 @@ class SecondViewController: UIViewController {
             self.friendsTableView.reloadData()
         }
         FriendSystem.system.addRequestObserver {
-            print(FriendSystem.system.requestList)
+//            print(FriendSystem.system.requestList)
         }
         
     }
